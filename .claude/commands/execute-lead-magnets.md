@@ -10,6 +10,7 @@ Every landing page must match this design system: CSS variables, Plus Jakarta Sa
 
 ## Notion Database
 - **Database ID:** 308307c6-7d1b-432d-9599-34388ba46274
+- **Deploy URL base:** https://mac-funnels.vercel.app
 
 ---
 
@@ -46,7 +47,7 @@ The deliverable is the Notion page itself. Build only the marketing assets:
    - Hero copy should reference the Notion page as the deliverable
 3. Write the delivery email at `website/lead-magnets/[slug]-email.txt`
    - Include the Notion URL as the main link
-4. Update the pipeline entry: set **Landing URL** to `[TU_DOMINIO]/lead-magnets/[slug]`
+4. Update the pipeline entry: set **Landing URL** to `mac-funnels.vercel.app/lead-magnets/[slug]`
 
 ---
 
@@ -82,7 +83,7 @@ Follow the PDF pipeline above, but the delivery email references both:
 ### Step 4: Update Notion on Completion
 After processing each item:
 - Set Status → "Complete"
-- Set Landing URL → `[TU_DOMINIO]/lead-magnets/[slug]` (if not already set)
+- Set Landing URL → `mac-funnels.vercel.app/lead-magnets/[slug]` (if not already set)
 
 ### Step 5: Deploy All Assets
 After processing all items, deploy everything at once:
@@ -103,4 +104,4 @@ Print a summary table for each processed item:
 Remind the user:
 - Copy each `[slug]-email.txt` content into its ConvertKit automation
 - If format was PDF, attach `[slug].pdf` to the ConvertKit email
-- Visit `[TU_DOMINIO]/lead-magnets/[slug]` to verify each page is live
+- Visit `mac-funnels.vercel.app/lead-magnets/[slug]` to verify each page is live

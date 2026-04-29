@@ -88,5 +88,5 @@ git push
 Output:
 - Page title and slug
 - Files created (landing page path + email path)
-- Live URL: `[TU_DOMINIO]/lead-magnets/[slug]`
+- Live URL: `mac-funnels.vercel.app/lead-magnets/[slug]`
 - Reminder: paste the email content from `[slug]-email.txt` into your ConvertKit automation for this form

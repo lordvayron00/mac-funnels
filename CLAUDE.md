@@ -35,7 +35,7 @@ Busca y reemplaza estos valores en `.claude/commands/` cuando los tengas listos:
 
 - `[TU_FOTO_URL]` → URL directa a tu foto (termina en .jpg o .png)
 - `[CONVERTKIT_FORM_ENDPOINT]` → URL del formulario de ConvertKit
-- `[TU_DOMINIO]` → Tu dominio en Vercel (ej: jorgeperez.com)
+- `mac-funnels.vercel.app` → Tu dominio en Vercel (ej: jorgeperez.com)
 
 ## Configuración inicial requerida
 
