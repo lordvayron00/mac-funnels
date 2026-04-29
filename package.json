@@ -1,0 +1,11 @@
+{
+  "name": "mac-funnels-lead-magnet-pipeline",
+  "version": "1.0.0",
+  "description": "Automatic lead magnet pipeline — MAC Funnels by Jorge Pérez",
+  "scripts": {
+    "setup": "npm install"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  }
+}
