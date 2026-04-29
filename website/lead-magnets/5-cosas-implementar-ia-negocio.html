@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Las 5 cosas que debes saber antes de implementar IA en tu negocio — Jorge Pérez</title>
+  <meta name="description" content="El 75% de los proyectos de IA fracasan. Descarga esta guía gratuita y aprende qué debes resolver antes de invertir un solo euro en inteligencia artificial." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────────────── */
+    :root {
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+
+      /* Light mode */
+      --bg: #ffffff;
+      --bg-subtle: #f8f8f6;
+      --bg-card: #ffffff;
+      --border: #e8e8e4;
+      --text: #1a1a18;
+      --text-muted: #6b6b65;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #eff6ff;
+      --success: #16a34a;
+
+      --nav-height: 60px;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
+      --shadow-lg: 0 4px 6px rgba(0,0,0,.05), 0 16px 48px rgba(0,0,0,.08);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f0f0e;
+      --bg-subtle: #1a1a18;
+      --bg-card: #1f1f1d;
+      --border: #2e2e2b;
+      --text: #f0f0ec;
+      --text-muted: #9a9a93;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --accent-light: #1e3a5f;
+      --success: #22c55e;
+    }
+
+    /* ─── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-main);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background .2s, color .2s;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent); text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; border: none; }
+
+    /* ─── Nav ────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-height);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      transition: background .2s;
+    }
+    [data-theme="dark"] nav { background: rgba(15,15,14,.85); }
+    .nav-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+    }
+    .theme-toggle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: background .2s;
+    }
+    .theme-toggle:hover { background: var(--border); }
+
+    /* ─── Main ───────────────────────────────────────────────────── */
+    main {
+      padding-top: calc(var(--nav-height) + 48px);
+      padding-bottom: 80px;
+    }
+    .container {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── Hero ───────────────────────────────────────────────────── */
+    .hero { text-align: center; margin-bottom: 40px; }
+
+    .trust-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .trust-bar img {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+    }
+    .trust-bar-text { font-size: 13px; color: var(--text-muted); }
+    .trust-bar-text strong { color: var(--text); font-weight: 600; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(26px, 5vw, 36px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      margin-bottom: 14px;
+    }
+
+    .subhead {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 440px;
+      margin: 0 auto 24px;
+      line-height: 1.55;
+    }
+
+    .value-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .pill {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .benefits {
+      text-align: left;
+      list-style: none;
+      margin-bottom: 0;
+    }
+    .benefits li {
+      display: flex;
+      gap: 10px;
+      font-size: 15px;
+      padding: 6px 0;
+      color: var(--text-muted);
+    }
+    .benefits li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ─── Form Card ──────────────────────────────────────────────── */
+    .form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 56px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .form-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-subtle);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 15px;
+      margin-bottom: 14px;
+      transition: border .15s, box-shadow .15s;
+      outline: none;
+    }
+    .form-input::placeholder { color: var(--text-muted); }
+    .form-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: var(--radius);
+      transition: background .15s, transform .1s;
+      margin-top: 4px;
+    }
+    .submit-btn:hover { background: var(--accent-hover); }
+    .submit-btn:active { transform: scale(.99); }
+    .submit-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+    .micro-trust {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .micro-trust span {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Success state */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .success-state.visible { display: block; }
+    .success-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+    .success-state h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .success-state p { font-size: 14px; color: var(--text-muted); }
+
+    /* ─── Stat bar ───────────────────────────────────────────────── */
+    .stat-bar {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 56px;
+      background: var(--bg-card);
+    }
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 20px 12px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -.02em;
+      display: block;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ─── FAQ ────────────────────────────────────────────────────── */
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .faq { margin-bottom: 56px; }
+    details {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 10px;
+      background: var(--bg-card);
+    }
+    summary {
+      padding: 16px 20px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform .2s;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+    .faq-body {
+      padding: 0 20px 16px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── Final CTA ──────────────────────────────────────────────── */
+    .cta-card {
+      background: var(--accent);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      text-align: center;
+      color: #fff;
+      margin-bottom: 56px;
+    }
+    .cta-card h2 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .cta-card p {
+      font-size: 15px;
+      opacity: .85;
+      margin-bottom: 24px;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #fff;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: var(--radius);
+      border: none;
+      transition: opacity .15s;
+    }
+    .cta-btn:hover { opacity: .9; }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .form-card { padding: 24px 20px; }
+      .cta-card { padding: 32px 24px; }
+      .stat-bar { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo">Jorge Pérez</span>
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">☀️</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <!-- ── Hero ── -->
+      <section class="hero">
+        <div class="trust-bar">
+          <img src="[TU_FOTO_URL]" alt="Jorge Pérez" />
+          <div class="trust-bar-text">
+            por <strong>Jorge Pérez</strong> · Creando Imperios con IA
+          </div>
+        </div>
+
+        <span class="eyebrow">Guía gratuita para empresarios</span>
+
+        <h1>Las 5 cosas que debes saber antes de implementar IA en tu negocio</h1>
+
+        <p class="subhead">
+          El 75% de los proyectos de IA fracasan. Esto es lo que nadie te dice antes de que empieces a gastar.
+        </p>
+
+        <div class="value-pills">
+          <span class="pill">⚡ Acceso instantáneo</span>
+          <span class="pill">📋 Checklist incluido</span>
+          <span class="pill">🎯 Sin jerga técnica</span>
+        </div>
+
+        <ul class="benefits">
+          <li>Aprenderás a definir el problema correcto antes de contratar a nadie</li>
+          <li>Descubrirás por qué el 42% de empresas abandona sus proyectos de IA (y cómo no ser una de ellas)</li>
+          <li>Tendrás un checklist de 7 puntos para saber si estás realmente listo antes de invertir</li>
+          <li>Evitarás los costos ocultos que ningún proveedor menciona en su propuesta</li>
+        </ul>
+      </section>
+
+      <!-- ── Form Card ── -->
+      <div class="form-card" id="formSection">
+        <div id="formWrapper">
+          <form id="leadForm" novalidate>
+            <label class="form-label" for="firstName">Nombre</label>
+            <input
+              class="form-input"
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="Tu nombre"
+              required
+              autocomplete="given-name"
+            />
+
+            <label class="form-label" for="email">Email</label>
+            <input
+              class="form-input"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="tu@email.com"
+              required
+              autocomplete="email"
+            />
+
+            <button class="submit-btn" type="submit" id="submitBtn">
+              Quiero la guía gratuita →
+            </button>
+          </form>
+
+          <div class="micro-trust">
+            <span>🔒 Sin spam</span>
+            <span>✉️ Entrega inmediata</span>
+            <span>🚫 Cancela cuando quieras</span>
+          </div>
+        </div>
+
+        <div class="success-state" id="successState">
+          <div class="success-icon">🎉</div>
+          <h3>¡Ya casi está!</h3>
+          <p>Revisa tu email — te enviamos el acceso a la guía en este momento.</p>
+        </div>
+      </div>
+
+      <!-- ── Stats ── -->
+      <div class="stat-bar">
+        <div class="stat-item">
+          <span class="stat-number">75%</span>
+          <span class="stat-label">de iniciativas de IA no superan la fase piloto</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">42%</span>
+          <span class="stat-label">de empresas abandonó sus proyectos de IA en 2025</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">3–10x</span>
+          <span class="stat-label">ROI promedio cuando el proyecto está bien ejecutado</span>
+        </div>
+      </div>
+
+      <!-- ── FAQ ── -->
+      <section class="faq">
+        <h2 class="section-title">Preguntas frecuentes</h2>
+
+        <details>
+          <summary>¿Qué incluye exactamente esta guía?</summary>
+          <div class="faq-body">
+            5 secciones con datos reales, ejemplos concretos de empresas que lo han hecho bien (y mal), y un checklist de 7 puntos para evaluar si tu negocio está listo para implementar IA. Sin teoría. Sin jerga técnica. Solo lo que necesitas saber antes de gastar.
+          </div>
+        </details>
+
+        <details>
+          <summary>¿Para quién es esto?</summary>
+          <div class="faq-body">
+            Para empresarios y directivos que están considerando implementar IA en su negocio y quieren hacerlo bien desde el primer día. No es para desarrolladores ni equipos de tecnología — es para quien toma las decisiones de inversión.
+          </div>
+        </details>
+
+        <details>
+          <summary>¿Lo recibiré inmediatamente?</summary>
+          <div class="faq-body">
+            Sí. En cuanto confirmes tu email, recibirás el acceso directo a la guía en tu bandeja de entrada. Si no aparece en 5 minutos, revisa la carpeta de spam.
+          </div>
+        </details>
+
+        <details>
+          <summary>¿Tengo que pagar algo?</summary>
+          <div class="faq-body">
+            No. Es completamente gratuito. A cambio, recibirás emails ocasionales con recursos y contenido de Jorge Pérez sobre IA, automatización y crecimiento de negocios. Puedes darte de baja cuando quieras con un clic.
+          </div>
+        </details>
+
+        <details>
+          <summary>¿Esto aplica para mi tipo de negocio?</summary>
+          <div class="faq-body">
+            Sí. Los principios que cubre esta guía son válidos independientemente del sector — retail, consultoría, servicios, manufactura. Los errores que evita son los mismos que cometen todos los empresarios, sin importar el tamaño del negocio.
+          </div>
+        </details>
+      </section>
+
+      <!-- ── Final CTA ── -->
+      <div class="cta-card">
+        <h2>¿Listo para implementar IA sin quemar tu inversión?</h2>
+        <p>Únete a los empresarios que toman decisiones informadas antes de actuar.</p>
+        <a class="cta-btn" href="#formSection">Conseguir la guía gratis</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>© 2026 Jorge Pérez · <a href="#">Política de privacidad</a> · <a href="#">Cancelar suscripción</a></p>
+  </footer>
+
+  <script>
+    // ── Theme toggle ──────────────────────────────────────────────
+    const html = document.documentElement;
+    const btn  = document.getElementById('themeToggle');
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      btn.textContent = theme === 'dark' ? '🌙' : '☀️';
+      localStorage.setItem('theme', theme);
+    }
+
+    setTheme(localStorage.getItem('theme') || 'light');
+    btn.addEventListener('click', () => {
+      setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+
+    // ── Form submission ───────────────────────────────────────────
+    const form        = document.getElementById('leadForm');
+    const submitBtn   = document.getElementById('submitBtn');
+    const successEl   = document.getElementById('successState');
+    const formWrapper = document.getElementById('formWrapper');
+
+    const WEBHOOK_URL = '[CONVERTKIT_FORM_ENDPOINT]';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const email     = document.getElementById('email').value.trim();
+
+      if (!firstName || !email) {
+        alert('Por favor completa tu nombre y email.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Ingresa un email válido.');
+        return;
+      }
+
+      submitBtn.disabled    = true;
+      submitBtn.textContent = 'Enviando…';
+
+      try {
+        const body = new FormData();
+        body.append('first_name', firstName);
+        body.append('email_address', email);
+
+        await fetch(WEBHOOK_URL, { method: 'POST', body });
+
+        formWrapper.style.display = 'none';
+        successEl.classList.add('visible');
+      } catch {
+        submitBtn.disabled    = false;
+        submitBtn.textContent = 'Quiero la guía gratuita →';
+        alert('Hubo un problema. Por favor intenta de nuevo.');
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+ASUNTO: Tu guía está aquí — Las 5 cosas que debes saber antes de implementar IA
+
+---
+
+Hola {{first_name}},
+
+Aquí está lo que pediste.
+
+👉 Accede a la guía aquí:
+https://app.notion.com/p/35162d91277781d58afffd56524da388
+
+---
+
+Dentro vas a encontrar las 5 cosas que el 75% de los empresarios descubren demasiado tarde cuando intentan implementar IA en su negocio:
+
+1. Por qué debes definir el problema antes de tocar ninguna herramienta
+2. Qué pasa cuando tus datos no están limpios (y cómo saberlo antes de empezar)
+3. Por qué no puedes delegar esto a tu equipo de tecnología
+4. Cómo empezar pequeño y conseguir una victoria rápida en 60-90 días
+5. Los costos ocultos que nadie menciona en su propuesta
+
+Y al final encontrarás un checklist de 7 puntos para saber si tu negocio está realmente listo para dar el paso.
+
+---
+
+Una cosa que quiero que tengas clara antes de empezar a leer:
+
+Esta guía no te va a decir qué herramienta comprar. No hay recomendaciones patrocinadas. No hay afiliados.
+
+Lo que hay es lo que necesitas resolver primero para que lo que compres después realmente funcione.
+
+Porque el problema no es la IA. El problema es llegar a la IA sin estar listo.
+
+---
+
+Si tienes alguna pregunta mientras lees, responde directamente a este email. Leo todos.
+
+Que lo disfrutes,
+
+Jorge Pérez
+Creando Imperios con IA
+
+---
+
+P.D. Si esto te parece útil, lo mejor que puedes hacer es reenviárselo a otro empresario que esté considerando implementar IA. Muchos van a tomar esa decisión este año. Pocos lo van a hacer bien.
+
+---
+
+© 2026 Jorge Pérez
+Para cancelar tu suscripción, haz clic aquí: {{unsubscribe_url}}
