@@ -77,11 +77,9 @@ P.D. [Invite them to reply with their biggest question or takeaway]
 Write in the same voice as the lead magnet: conversacional, cercano, sin relleno.
 
 ### Step 5: Deploy
-Run these commands in sequence:
+Run the deploy script (handles git push + Vercel deploy automatically):
 ```bash
-git add website/lead-magnets/[slug].html website/lead-magnets/[slug]-email.txt
-git commit -m "Add [lead magnet title] landing page"
-git push
+bash lead-magnet-system/scripts/deploy.sh "Add [lead magnet title] landing page"
 ```
 
 ### Step 6: Summary

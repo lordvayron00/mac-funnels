@@ -86,13 +86,13 @@ After processing each item:
 - Set Landing URL → `mac-funnels.vercel.app/lead-magnets/[slug]` (if not already set)
 
 ### Step 5: Deploy All Assets
-After processing all items, deploy everything at once:
+After processing all items, deploy everything at once using the deploy script:
 
 ```bash
-git add website/lead-magnets/
-git commit -m "Deploy [N] lead magnet(s): [list of titles]"
-git push
+bash lead-magnet-system/scripts/deploy.sh "Deploy [N] lead magnet(s): [list of titles]"
 ```
+
+This script handles git add, commit, push to GitHub, and `vercel deploy --prod` in one step.
 
 ### Step 6: Final Summary
 Print a summary table for each processed item:
