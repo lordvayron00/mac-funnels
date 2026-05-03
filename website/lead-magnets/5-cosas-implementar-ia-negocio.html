@@ -588,8 +588,6 @@
     const successEl   = document.getElementById('successState');
     const formWrapper = document.getElementById('formWrapper');
 
-    const WEBHOOK_URL = '[CONVERTKIT_FORM_ENDPOINT]';
-
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -609,11 +607,17 @@
       submitBtn.textContent = 'Enviando…';
 
       try {
-        const body = new FormData();
-        body.append('first_name', firstName);
-        body.append('email_address', email);
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            first_name: firstName,
+            email: email,
+            slug: '5-cosas-implementar-ia-negocio'
+          })
+        });
 
-        await fetch(WEBHOOK_URL, { method: 'POST', body });
+        if (!res.ok) throw new Error('Server error');
 
         formWrapper.style.display = 'none';
         successEl.classList.add('visible');
